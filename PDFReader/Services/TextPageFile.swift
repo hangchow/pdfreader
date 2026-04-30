@@ -65,7 +65,7 @@ enum TextPageFile {
             try fileHandle.seek(toOffset: range.startOffset)
             let data = try fileHandle.read(upToCount: range.byteCount) ?? Data()
             let rawText = String(data: data, encoding: .utf8) ?? String(decoding: data, as: UTF8.self)
-            let text = rawText.trimmingCharacters(in: .newlines)
+            let text = TextCleaner.ensureParagraphIndents(in: rawText)
             return text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? "此页没有可提取文本" : text
         }.value
     }

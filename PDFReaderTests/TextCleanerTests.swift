@@ -68,4 +68,40 @@ final class TextCleanerTests: XCTestCase {
 
         XCTAssertEqual(TextCleaner.cleanExtractedText(text), text)
     }
+
+    func testEnsuresFullWidthIndentForChineseParagraphsWhenLoadingText() {
+        let text = """
+        没有缩进的中文段落。
+          “带 ASCII 空格的对话段落。”
+        　　已有全角缩进的段落。
+        English paragraph.
+        """
+
+        XCTAssertEqual(
+            TextCleaner.ensureParagraphIndents(in: text),
+            """
+            　　没有缩进的中文段落。
+            　　“带 ASCII 空格的对话段落。”
+            　　已有全角缩进的段落。
+            English paragraph.
+            """
+        )
+    }
+
+    func testDoesNotIndentUnindentedWrappedContinuationLinesWhenLoadingText() {
+        let text = """
+        　　光怪陆离满是低语的梦境迅速支离破碎，熟睡中的周明瑞只觉脑
+        袋抽痛异常，仿佛被人用棒子狠狠抡了一下。
+        新段落应该补缩进。
+        """
+
+        XCTAssertEqual(
+            TextCleaner.ensureParagraphIndents(in: text),
+            """
+            　　光怪陆离满是低语的梦境迅速支离破碎，熟睡中的周明瑞只觉脑
+            袋抽痛异常，仿佛被人用棒子狠狠抡了一下。
+            　　新段落应该补缩进。
+            """
+        )
+    }
 }

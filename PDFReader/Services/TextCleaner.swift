@@ -1,21 +1,30 @@
 import Foundation
 
 enum TextCleaner {
+    private static let paragraphIndent = "\u{3000}\u{3000}"
+
     static func cleanExtractedText(_ text: String) -> String {
         removeWrappedLineBreaks(in: normalizeChineseParagraphIndents(in: text))
     }
 
+    static func ensureParagraphIndents(in text: String) -> String {
+        let lineBreakTrimmedText = text.trimmingCharacters(in: .newlines)
+        var previousContentLine: String?
+
+        return normalizedLines(in: lineBreakTrimmedText).map { line in
+            let indented = indentedLine(line, previousContentLine: previousContentLine)
+            if line.trimmingCharacters(in: .whitespaces).isEmpty {
+                previousContentLine = nil
+            } else {
+                previousContentLine = line
+            }
+            return indented
+        }.joined(separator: "\n")
+    }
+
     static func removeWrappedLineBreaks(in text: String) -> String {
         let lineBreakTrimmedText = text.trimmingCharacters(in: .newlines)
-        let lines = lineBreakTrimmedText
-            .split(separator: "\n", omittingEmptySubsequences: false)
-            .map { rawLine -> String in
-                var line = String(rawLine)
-                if line.hasSuffix("\r") {
-                    line.removeLast()
-                }
-                return line
-            }
+        let lines = normalizedLines(in: lineBreakTrimmedText)
 
         var mergedLines: [String] = []
         for line in lines {
@@ -35,32 +44,24 @@ enum TextCleaner {
     }
 
     static func normalizeChineseParagraphIndents(in text: String) -> String {
-        let lineBreakTrimmedText = text.trimmingCharacters(in: .newlines)
-        let lines = lineBreakTrimmedText.split(separator: "\n", omittingEmptySubsequences: false)
-
-        return lines.map { line in
-            var textLine = String(line)
-            if textLine.hasSuffix("\r") {
-                textLine.removeLast()
+        mapLines(in: text) { line in
+            guard line.hasParagraphIndent == false else {
+                return line
             }
 
-            if textLine.hasPrefix("\u{3000}\u{3000}") {
-                return textLine
-            }
-
-            let leadingSpaceCount = textLine.prefix { $0 == " " || $0 == "\t" }.count
+            let leadingSpaceCount = line.prefix { $0 == " " || $0 == "\t" }.count
             guard leadingSpaceCount > 0 else {
-                return textLine
+                return line
             }
 
-            let contentStart = textLine.index(textLine.startIndex, offsetBy: leadingSpaceCount)
-            let content = textLine[contentStart...]
-            guard content.first?.isLikelyCJK == true else {
-                return textLine
+            let contentStart = line.index(line.startIndex, offsetBy: leadingSpaceCount)
+            let content = String(line[contentStart...])
+            guard content.startsLikeChineseParagraph else {
+                return line
             }
 
-            return "\u{3000}\u{3000}" + content
-        }.joined(separator: "\n")
+            return paragraphIndent + content
+        }
     }
 
     private static func shouldRemoveLineBreak(previousLine: String, nextLine: String) -> Bool {
@@ -110,9 +111,50 @@ enum TextCleaner {
     }
 
     private static func startsWithParagraphIndent(_ line: String) -> Bool {
-        line.hasPrefix("\u{3000}\u{3000}") ||
+        line.hasParagraphIndent ||
             line.hasPrefix("  ") ||
             line.hasPrefix("\t")
+    }
+
+    private static func indentedLine(_ line: String, previousContentLine: String?) -> String {
+        guard line.trimmingCharacters(in: .whitespaces).isEmpty == false else {
+            return line
+        }
+
+        if line.hasParagraphIndent {
+            return line
+        }
+
+        if line.hasAsciiParagraphIndent {
+            let content = line.trimmingLeadingWhitespace()
+            return content.startsLikeChineseParagraph ? paragraphIndent + content : line
+        }
+
+        guard previousContentLine == nil || hasSentenceEndingPause(previousContentLine ?? "") else {
+            return line
+        }
+
+        let content = line.trimmingLeadingWhitespace()
+        guard content.startsLikeChineseParagraph else {
+            return line
+        }
+
+        return paragraphIndent + content
+    }
+
+    private static func normalizedLines(in text: String) -> [String] {
+        text.split(separator: "\n", omittingEmptySubsequences: false).map { rawLine in
+            var line = String(rawLine)
+            if line.hasSuffix("\r") {
+                line.removeLast()
+            }
+            return line
+        }
+    }
+
+    private static func mapLines(in text: String, transform: (String) -> String) -> String {
+        let lineBreakTrimmedText = text.trimmingCharacters(in: .newlines)
+        return normalizedLines(in: lineBreakTrimmedText).map(transform).joined(separator: "\n")
     }
 
     private static let sentenceEndingPunctuation = Set<Character>(["。", ".", "！", "!", "？", "?", "…"])
@@ -148,4 +190,24 @@ private extension String {
 
         return String(self[firstContentIndex...])
     }
+
+    var hasParagraphIndent: Bool {
+        hasPrefix("\u{3000}\u{3000}")
+    }
+
+    var hasAsciiParagraphIndent: Bool {
+        hasPrefix("  ") || hasPrefix("\t")
+    }
+
+    var startsLikeChineseParagraph: Bool {
+        guard let firstContent = firstNonWhitespace else {
+            return false
+        }
+
+        return firstContent.isLikelyCJK || Self.chineseParagraphLeadingCharacters.contains(firstContent)
+    }
+
+    private static let chineseParagraphLeadingCharacters = Set<Character>([
+        "“", "\"", "‘", "'", "「", "『", "（", "(", "《", "〈", "【", "["
+    ])
 }

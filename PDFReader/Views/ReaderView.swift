@@ -52,7 +52,7 @@ struct ReaderView: View {
                 currentPageIndex: $currentPageIndex,
                 preferences: preferencesStore.preferences
             )
-            .simultaneousGesture(
+            .gesture(
                 TapGesture().onEnded {
                     toggleReaderChrome()
                 }
