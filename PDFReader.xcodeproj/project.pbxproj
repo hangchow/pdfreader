@@ -15,6 +15,7 @@
 		A1B2C3D4E5F6000000000106 /* ProgressStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F6000000000206 /* ProgressStore.swift */; };
 		A1B2C3D4E5F6000000000107 /* ReaderPreferencesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F6000000000207 /* ReaderPreferencesStore.swift */; };
 		A1B2C3D4E5F6000000000108 /* BookLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F6000000000208 /* BookLibrary.swift */; };
+		A1B2C3D4E5F6000000000113 /* TextCleaner.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F6000000000214 /* TextCleaner.swift */; };
 		A1B2C3D4E5F6000000000112 /* PDFTextExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F6000000000213 /* PDFTextExtractor.swift */; };
 		A1B2C3D4E5F6000000000111 /* TextPageFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F6000000000212 /* TextPageFile.swift */; };
 		A1B2C3D4E5F6000000000109 /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F6000000000209 /* LibraryView.swift */; };
@@ -23,10 +24,22 @@
 		A1B2C3D4E5F600000000010D /* TextPageReaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F600000000020D /* TextPageReaderView.swift */; };
 		A1B2C3D4E5F600000000010E /* ReaderQuickMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F600000000020E /* ReaderQuickMenu.swift */; };
 		A1B2C3D4E5F600000000010F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F600000000020F /* Assets.xcassets */; };
+		A1B2C3D4E5F6000000000114 /* TextCleanerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F6000000000215 /* TextCleanerTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A1B2C3D4E5F600000000000E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1B2C3D4E5F6000000000008 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A1B2C3D4E5F6000000000001;
+			remoteInfo = PDFReader;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		A1B2C3D4E5F6000000000002 /* PDFReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PDFReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1B2C3D4E5F6000000000009 /* PDFReaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PDFReaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1B2C3D4E5F6000000000201 /* PDFReaderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderApp.swift; sourceTree = "<group>"; };
 		A1B2C3D4E5F6000000000202 /* PDFBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFBook.swift; sourceTree = "<group>"; };
 		A1B2C3D4E5F6000000000203 /* ReadingProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingProgress.swift; sourceTree = "<group>"; };
@@ -35,6 +48,7 @@
 		A1B2C3D4E5F6000000000206 /* ProgressStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressStore.swift; sourceTree = "<group>"; };
 		A1B2C3D4E5F6000000000207 /* ReaderPreferencesStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderPreferencesStore.swift; sourceTree = "<group>"; };
 		A1B2C3D4E5F6000000000208 /* BookLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookLibrary.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F6000000000214 /* TextCleaner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCleaner.swift; sourceTree = "<group>"; };
 		A1B2C3D4E5F6000000000213 /* PDFTextExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFTextExtractor.swift; sourceTree = "<group>"; };
 		A1B2C3D4E5F6000000000212 /* TextPageFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextPageFile.swift; sourceTree = "<group>"; };
 		A1B2C3D4E5F6000000000209 /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
@@ -44,10 +58,18 @@
 		A1B2C3D4E5F600000000020E /* ReaderQuickMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderQuickMenu.swift; sourceTree = "<group>"; };
 		A1B2C3D4E5F600000000020F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A1B2C3D4E5F6000000000210 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A1B2C3D4E5F6000000000215 /* TextCleanerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCleanerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		A1B2C3D4E5F6000000000004 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1B2C3D4E5F600000000000C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -61,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				A1B2C3D4E5F6000000000301 /* PDFReader */,
+				A1B2C3D4E5F6000000000310 /* PDFReaderTests */,
 				A1B2C3D4E5F6000000000006 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -69,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				A1B2C3D4E5F6000000000002 /* PDFReader.app */,
+				A1B2C3D4E5F6000000000009 /* PDFReaderTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -103,6 +127,7 @@
 				A1B2C3D4E5F6000000000206 /* ProgressStore.swift */,
 				A1B2C3D4E5F6000000000207 /* ReaderPreferencesStore.swift */,
 				A1B2C3D4E5F6000000000208 /* BookLibrary.swift */,
+				A1B2C3D4E5F6000000000214 /* TextCleaner.swift */,
 				A1B2C3D4E5F6000000000213 /* PDFTextExtractor.swift */,
 				A1B2C3D4E5F6000000000212 /* TextPageFile.swift */,
 			);
@@ -129,6 +154,14 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		A1B2C3D4E5F6000000000310 /* PDFReaderTests */ = {
+			isa = PBXGroup;
+			children = (
+				A1B2C3D4E5F6000000000215 /* TextCleanerTests.swift */,
+			);
+			path = PDFReaderTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -149,6 +182,24 @@
 			productReference = A1B2C3D4E5F6000000000002 /* PDFReader.app */;
 			productType = "com.apple.product-type.application";
 		};
+		A1B2C3D4E5F600000000000A /* PDFReaderTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1B2C3D4E5F6000000000608 /* Build configuration list for PBXNativeTarget "PDFReaderTests" */;
+			buildPhases = (
+				A1B2C3D4E5F600000000000B /* Sources */,
+				A1B2C3D4E5F600000000000C /* Frameworks */,
+				A1B2C3D4E5F600000000000D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A1B2C3D4E5F600000000000F /* PBXTargetDependency */,
+			);
+			name = PDFReaderTests;
+			productName = PDFReaderTests;
+			productReference = A1B2C3D4E5F6000000000009 /* PDFReaderTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -161,6 +212,10 @@
 				TargetAttributes = {
 					A1B2C3D4E5F6000000000001 = {
 						CreatedOnToolsVersion = 16.2;
+					};
+					A1B2C3D4E5F600000000000A = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = A1B2C3D4E5F6000000000001;
 					};
 				};
 			};
@@ -178,6 +233,7 @@
 			projectRoot = "";
 			targets = (
 				A1B2C3D4E5F6000000000001 /* PDFReader */,
+				A1B2C3D4E5F600000000000A /* PDFReaderTests */,
 			);
 		};
 /* End PBXProject section */
@@ -188,6 +244,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1B2C3D4E5F600000000010F /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1B2C3D4E5F600000000000D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,6 +269,7 @@
 				A1B2C3D4E5F6000000000106 /* ProgressStore.swift in Sources */,
 				A1B2C3D4E5F6000000000107 /* ReaderPreferencesStore.swift in Sources */,
 				A1B2C3D4E5F6000000000108 /* BookLibrary.swift in Sources */,
+				A1B2C3D4E5F6000000000113 /* TextCleaner.swift in Sources */,
 				A1B2C3D4E5F6000000000112 /* PDFTextExtractor.swift in Sources */,
 				A1B2C3D4E5F6000000000111 /* TextPageFile.swift in Sources */,
 				A1B2C3D4E5F6000000000109 /* LibraryView.swift in Sources */,
@@ -216,7 +280,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A1B2C3D4E5F600000000000B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1B2C3D4E5F6000000000114 /* TextCleanerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A1B2C3D4E5F600000000000F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A1B2C3D4E5F6000000000001 /* PDFReader */;
+			targetProxy = A1B2C3D4E5F600000000000E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		A1B2C3D4E5F6000000000601 /* Debug */ = {
@@ -390,6 +470,56 @@
 			};
 			name = Release;
 		};
+		A1B2C3D4E5F6000000000606 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3J5E46N9MV;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sean.pdfreaderTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PDFReader.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PDFReader";
+			};
+			name = Debug;
+		};
+		A1B2C3D4E5F6000000000607 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3J5E46N9MV;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sean.pdfreaderTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PDFReader.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PDFReader";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -407,6 +537,15 @@
 			buildConfigurations = (
 				A1B2C3D4E5F6000000000604 /* Debug */,
 				A1B2C3D4E5F6000000000605 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A1B2C3D4E5F6000000000608 /* Build configuration list for PBXNativeTarget "PDFReaderTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1B2C3D4E5F6000000000606 /* Debug */,
+				A1B2C3D4E5F6000000000607 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

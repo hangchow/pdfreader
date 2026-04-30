@@ -81,8 +81,8 @@ enum PDFTextExtractor {
                         try Task.checkCancellation()
 
                         let extractedText = document.page(at: index)?.string ?? ""
-                        let normalizedText = normalizeChineseParagraphIndents(in: extractedText)
-                        let pageText = normalizedText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? "此页没有可提取文本" : normalizedText
+                        let cleanedText = TextCleaner.cleanExtractedText(extractedText)
+                        let pageText = cleanedText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? "此页没有可提取文本" : cleanedText
                         let separator = index == pageCount - 1 ? "" : "\n\u{000C}\n"
 
                         guard let data = (pageText + separator).data(using: .utf8) else {
@@ -111,45 +111,4 @@ enum PDFTextExtractor {
         }.value
     }
 
-    private static func normalizeChineseParagraphIndents(in text: String) -> String {
-        let lineBreakTrimmedText = text.trimmingCharacters(in: .newlines)
-        let lines = lineBreakTrimmedText.split(separator: "\n", omittingEmptySubsequences: false)
-
-        return lines.map { line in
-            var textLine = String(line)
-            if textLine.hasSuffix("\r") {
-                textLine.removeLast()
-            }
-
-            if textLine.hasPrefix("\u{3000}\u{3000}") {
-                return textLine
-            }
-
-            let leadingSpaceCount = textLine.prefix { $0 == " " || $0 == "\t" }.count
-            guard leadingSpaceCount > 0 else {
-                return textLine
-            }
-
-            let contentStart = textLine.index(textLine.startIndex, offsetBy: leadingSpaceCount)
-            let content = textLine[contentStart...]
-            guard content.first?.isLikelyCJK == true else {
-                return textLine
-            }
-
-            return "\u{3000}\u{3000}" + content
-        }.joined(separator: "\n")
-    }
-}
-
-private extension Character {
-    var isLikelyCJK: Bool {
-        unicodeScalars.contains { scalar in
-            switch scalar.value {
-            case 0x3400...0x4DBF, 0x4E00...0x9FFF, 0xF900...0xFAFF:
-                return true
-            default:
-                return false
-            }
-        }
-    }
 }
