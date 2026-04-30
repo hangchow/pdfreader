@@ -15,6 +15,7 @@
 		A1B2C3D4E5F6000000000106 /* ProgressStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F6000000000206 /* ProgressStore.swift */; };
 		A1B2C3D4E5F6000000000107 /* ReaderPreferencesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F6000000000207 /* ReaderPreferencesStore.swift */; };
 		A1B2C3D4E5F6000000000108 /* BookLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F6000000000208 /* BookLibrary.swift */; };
+		A1B2C3D4E5F6000000000112 /* PDFTextExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F6000000000213 /* PDFTextExtractor.swift */; };
 		A1B2C3D4E5F6000000000111 /* TextPageFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F6000000000212 /* TextPageFile.swift */; };
 		A1B2C3D4E5F6000000000109 /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F6000000000209 /* LibraryView.swift */; };
 		A1B2C3D4E5F600000000010A /* BookCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F600000000020A /* BookCardView.swift */; };
@@ -34,6 +35,7 @@
 		A1B2C3D4E5F6000000000206 /* ProgressStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressStore.swift; sourceTree = "<group>"; };
 		A1B2C3D4E5F6000000000207 /* ReaderPreferencesStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderPreferencesStore.swift; sourceTree = "<group>"; };
 		A1B2C3D4E5F6000000000208 /* BookLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookLibrary.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F6000000000213 /* PDFTextExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFTextExtractor.swift; sourceTree = "<group>"; };
 		A1B2C3D4E5F6000000000212 /* TextPageFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextPageFile.swift; sourceTree = "<group>"; };
 		A1B2C3D4E5F6000000000209 /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
 		A1B2C3D4E5F600000000020A /* BookCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCardView.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 				A1B2C3D4E5F6000000000206 /* ProgressStore.swift */,
 				A1B2C3D4E5F6000000000207 /* ReaderPreferencesStore.swift */,
 				A1B2C3D4E5F6000000000208 /* BookLibrary.swift */,
+				A1B2C3D4E5F6000000000213 /* PDFTextExtractor.swift */,
 				A1B2C3D4E5F6000000000212 /* TextPageFile.swift */,
 			);
 			path = Services;
@@ -203,6 +206,7 @@
 				A1B2C3D4E5F6000000000106 /* ProgressStore.swift in Sources */,
 				A1B2C3D4E5F6000000000107 /* ReaderPreferencesStore.swift in Sources */,
 				A1B2C3D4E5F6000000000108 /* BookLibrary.swift in Sources */,
+				A1B2C3D4E5F6000000000112 /* PDFTextExtractor.swift in Sources */,
 				A1B2C3D4E5F6000000000111 /* TextPageFile.swift in Sources */,
 				A1B2C3D4E5F6000000000109 /* LibraryView.swift in Sources */,
 				A1B2C3D4E5F600000000010A /* BookCardView.swift in Sources */,
