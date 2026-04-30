@@ -74,6 +74,10 @@ enum TextCleaner {
             return false
         }
 
+        if isChapterHeading(previousLine) {
+            return false
+        }
+
         if startsWithLeadingPunctuation(nextLine) {
             return true
         }
@@ -104,6 +108,26 @@ enum TextCleaner {
         }
 
         return Self.leadingPunctuation.contains(first)
+    }
+
+    private static func isChapterHeading(_ line: String) -> Bool {
+        let trimmedLine = line.trimmingCharacters(in: .whitespaces)
+        guard trimmedLine.hasPrefix("第"), trimmedLine.contains("章") else {
+            return false
+        }
+
+        guard let chapterMarkerIndex = trimmedLine.firstIndex(of: "章") else {
+            return false
+        }
+
+        let numberText = trimmedLine[trimmedLine.index(after: trimmedLine.startIndex)..<chapterMarkerIndex]
+        guard numberText.isEmpty == false else {
+            return false
+        }
+
+        return numberText.allSatisfy { character in
+            character.isNumber || Self.chineseChapterNumberCharacters.contains(character)
+        }
     }
 
     private static func lineForJoining(_ line: String) -> String {
@@ -159,6 +183,10 @@ enum TextCleaner {
 
     private static let sentenceEndingPunctuation = Set<Character>(["。", ".", "！", "!", "？", "?", "…"])
     private static let closingPunctuation = Set<Character>(["”", "\"", "’", "'", "）", ")", "》", ">", "】", "]", "」", "』"])
+    private static let chineseChapterNumberCharacters = Set<Character>([
+        "零", "〇", "一", "二", "三", "四", "五", "六", "七", "八", "九", "十",
+        "百", "千", "两"
+    ])
     private static let leadingPunctuation = Set<Character>([
         "，", ",", "。", ".", "！", "!", "？", "?", "；", ";", "：", ":", "、",
         "”", "\"", "’", "'", "）", ")", "》", ">", "】", "]", "」", "』"
