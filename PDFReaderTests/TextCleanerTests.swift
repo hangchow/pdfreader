@@ -63,6 +63,23 @@ final class TextCleanerTests: XCTestCase {
         )
     }
 
+    func testKeepsLineBreakAfterChapterHeadingFromIssueThree() {
+        let text = """
+        　　
+        第九十五章 王女
+        不喜欢绰号
+        """
+
+        XCTAssertEqual(
+            TextCleaner.cleanExtractedText(text),
+            """
+            　　
+            第九十五章 王女
+            不喜欢绰号
+            """
+        )
+    }
+
     func testKeepsPageSeparatorBoundaries() {
         let text = "上一页最后一行\n\u{000C}\n下一页第一行"
 
